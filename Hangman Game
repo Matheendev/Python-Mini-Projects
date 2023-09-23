@@ -1,0 +1,36 @@
+# Hangman Game
+
+import random
+
+fruits = '''apple mango banana strawberry orange grape pineapple apricot
+lemon coconut watermelon cherry papaya berry peach muskmelon lychee'''
+
+words = fruits.split(' ')
+random_word = random.choice(words)
+#print('our random word', random_word)
+print('*' * 7,'WORD GUESSING GAME', '*' * 7)
+user_guess = ' '
+chances = 10
+while chances > 0:
+    wrong_guess = 0
+    for character in random_word:
+        if character in random_word:
+            if character in user_guess:
+                print(f'Correct guess:{character}')
+            else:
+                wrong_guess += 1
+                print('_')
+    if wrong_guess == 0:
+        print('\n')
+        print('Congratulations, You won!')
+        print('\n')
+        print(f'Word:{random_word}')
+        break
+    print('\n')
+    guess = input('Make a guess: ')
+    user_guess += guess
+    if guess not in random_word:
+        chances -= 1
+        print(f'Wrong. You have {chances} more chances')
+        if chances == 0:
+            print('game over')
